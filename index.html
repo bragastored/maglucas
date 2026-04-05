@@ -179,7 +179,7 @@ footer{padding:40px 0;border-top:1px solid var(--sand);margin-top:80px}
 </div>
 
 <script>
-const AIRTABLE_TABLE = 'Hotels';
+const AIRTABLE_TABLE = "Hoteles";;
 
 const TEMPLATES = {
   EN: (h, m) => `Subject: Visual content production | ${h.name}\n\nHi${h.contactName ? ' ' + h.contactName.split(' ')[0] : ''},\n\nMy name is Lucas Braga. I run Mag & Lucas — a boutique visual production studio specializing in photography and cinematic video for high-end hospitality.\n\nWe've worked with over 60 properties across Europe and the Americas — including Mandarin Oriental, Relais & Châteaux, and The Luxury Collection — producing content for social media, websites, and digital campaigns.\n\nWe'll be in ${h.city ? h.city.split(' ')[0] : 'your city'} during ${m} with availability for new productions. Attached you'll find an overview of our work and access to our portfolio.\n\nIf you'd like to receive a proposal, we're happy to put one together.\n\nLucas Braga\nMag & Lucas — Visual Production Studio\nwww.bragalucas.com/mag-and-lucas`,
