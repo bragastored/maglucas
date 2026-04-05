@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OUTREACH — Mag & Lucas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap');
+:root{--cream:#f8f5f0;--warm:#f2ede6;--sand:#e8e0d5;--stone:#c9bfb3;--taupe:#8c7d6e;--brown:#5a4a3a;--espresso:#2c1f14;--gold:#b8960c;--white:#ffffff;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Josefin Sans',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--cream);color:var(--espresso);font-family:var(--sans);font-weight:300;min-height:100vh}
+.wrapper{max-width:1100px;margin:0 auto;padding:0 40px}
+header{padding:60px 0 40px;border-bottom:1px solid var(--sand);margin-bottom:60px}
+.header-inner{display:flex;align-items:flex-end;justify-content:space-between}
+.brand{font-family:var(--serif);font-size:13px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--taupe)}
+.title-block h1{font-family:var(--serif);font-size:72px;font-weight:300;font-style:italic;color:var(--espresso);line-height:.9;letter-spacing:-1px}
+.title-block .subtitle{font-family:var(--sans);font-size:10px;font-weight:200;letter-spacing:5px;text-transform:uppercase;color:var(--taupe);margin-top:12px}
+.header-tagline{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--taupe);max-width:220px;line-height:1.5;text-align:right}
+.main{display:grid;grid-template-columns:320px 1fr;gap:60px;align-items:start}
+.sidebar{position:sticky;top:40px}
+.section-label{font-family:var(--sans);font-size:9px;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--sand)}
+.field-group{margin-bottom:24px}
+.field-label{font-family:var(--sans);font-size:9px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:10px;display:block}
+input[type=text],input[type=password],select,textarea{width:100%;background:var(--white);border:1px solid var(--sand);color:var(--espresso);font-family:var(--sans);font-size:13px;font-weight:300;letter-spacing:1px;padding:12px 16px;outline:none;transition:border-color .3s;appearance:none;border-radius:0}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+input::placeholder,textarea::placeholder{color:var(--stone)}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238c7d6e' stroke-width='1' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
+.api-note{font-size:10px;font-weight:300;color:var(--stone);margin-top:8px;line-height:1.5}
+.launch-btn{width:100%;padding:16px;background:var(--espresso);border:none;color:var(--cream);font-family:var(--sans);font-size:10px;font-weight:400;letter-spacing:5px;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-top:8px}
+.launch-btn:hover{background:var(--brown)}
+.launch-btn:disabled{background:var(--stone);cursor:not-allowed}
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--sand);margin-bottom:40px}
+.stat-cell{padding:20px;text-align:center;border-right:1px solid var(--sand)}
+.stat-cell:last-child{border-right:none}
+.stat-number{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--espresso);line-height:1}
+.stat-name{font-family:var(--sans);font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-top:6px}
+.status-line{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--taupe);margin-bottom:32px;min-height:22px;padding-left:16px;border-left:2px solid var(--sand);transition:all .3s}
+.status-line.active{border-color:var(--gold);color:var(--brown)}
+.status-line.success{border-color:#6a9a6a;color:#3a5a3a}
+.status-line.error{border-color:#c07070;color:#8a4040}
+.progress-track{height:1px;background:var(--sand);margin-bottom:40px;display:none}
+.progress-fill{height:100%;background:var(--gold);transition:width .4s ease}
+.results-section{display:none}
+.results-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.export-btn{font-family:var(--sans);font-size:9px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);background:none;border:1px solid var(--sand);padding:8px 16px;cursor:pointer;transition:all .2s}
+.export-btn:hover{border-color:var(--espresso);color:var(--espresso)}
+.hotels-list{display:flex;flex-direction:column;gap:1px;background:var(--sand);border:1px solid var(--sand)}
+.hotel-item{background:var(--white);padding:24px 28px;transition:background .2s;animation:fadeUp .4s ease both}
+.hotel-item:hover{background:var(--warm)}
+.hotel-item.priority{border-left:3px solid var(--gold)}
+.hotel-item.no-email{opacity:.75}
+.hotel-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.hotel-name{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--espresso);line-height:1.2}
+.hotel-city{font-family:var(--sans);font-size:10px;font-weight:300;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);margin-top:3px}
+.cat-tag{font-family:var(--sans);font-size:9px;font-weight:400;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border:1px solid var(--sand);color:var(--taupe);white-space:nowrap}
+.cat-tag.five{border-color:var(--gold);color:var(--gold)}
+.cat-tag.boutique{border-color:var(--brown);color:var(--brown)}
+.cat-tag.design{border-color:var(--taupe);color:var(--taupe)}
+.hotel-email-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:12px;flex-wrap:wrap}
+.email-found{font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:1px;color:#5a7a5a;display:flex;align-items:center;gap:8px}
+.email-found::before{content:'';width:6px;height:6px;background:#5a7a5a;border-radius:50%;flex-shrink:0}
+.email-missing{font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:1px;color:var(--stone);display:flex;align-items:center;gap:8px}
+.email-missing::before{content:'';width:6px;height:6px;background:var(--stone);border-radius:50%;flex-shrink:0}
+.saved-tag{font-family:var(--sans);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a7a5a;padding:2px 8px;border:1px solid #5a7a5a;margin-left:8px}
+.card-btns{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
+.btn-ghost{font-family:var(--sans);font-size:9px;font-weight:400;letter-spacing:2px;text-transform:uppercase;padding:6px 12px;border:1px solid var(--sand);background:none;color:var(--taupe);cursor:pointer;transition:all .2s}
+.btn-ghost:hover{border-color:var(--espresso);color:var(--espresso)}
+.btn-ghost.gold{border-color:var(--gold);color:var(--gold)}
+.btn-ghost.gold:hover{background:var(--gold);color:white}
+.email-body-preview{display:none;margin-top:16px;padding:20px 24px;background:var(--cream);border-left:2px solid var(--sand);font-family:var(--serif);font-size:14px;font-weight:300;line-height:1.8;color:var(--brown);white-space:pre-wrap}
+.email-body-preview.open{display:block}
+footer{padding:40px 0;border-top:1px solid var(--sand);margin-top:80px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--taupe)}
+.footer-note{font-family:var(--sans);font-size:9px;font-weight:300;letter-spacing:2px;text-transform:uppercase;color:var(--stone)}
+.conn-status{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.conn-dot{font-family:var(--sans);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);display:flex;align-items:center;gap:6px}
+.conn-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--stone)}
+.conn-dot.ok{color:#5a7a5a}.conn-dot.ok::before{background:#5a7a5a}
+.conn-dot.err{color:#c07070}.conn-dot.err::before{background:#c07070}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.main{grid-template-columns:1fr}.header-inner{flex-direction:column;gap:24px;align-items:flex-start}.title-block h1{font-size:48px}.stats-strip{grid-template-columns:repeat(2,1fr)}.wrapper{padding:0 20px}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<header>
+  <div class="header-inner">
+    <div class="title-block">
+      <div class="brand">Mag & Lucas — Visual Production Studio</div>
+      <h1>Outreach</h1>
+      <div class="subtitle">Hotel Contact System — 2026</div>
+    </div>
+    <div class="header-tagline">We don't just show spaces.<br>We show how it feels to be there.</div>
+  </div>
+</header>
+
+<div class="main">
+<aside class="sidebar">
+  <div class="section-label">Conexiones</div>
+  <div class="conn-status" id="connStatus">
+    <span class="conn-dot" id="dotAirtable">Airtable</span>
+    <span class="conn-dot" id="dotHunter">Hunter</span>
+  </div>
+
+  <div class="section-label">Configuración</div>
+
+  <div class="field-group">
+    <label class="field-label">Airtable Token</label>
+    <input type="password" id="airtableToken" placeholder="patXXXXXXXXXXXXXX" value="pathc3vqYsXU2lg7B.46837f3f2ccaa492d2a4acbbe09e99afdec943978c85173bdf75a1d14d4508bd">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Airtable Base ID</label>
+    <input type="text" id="airtableBase" placeholder="appXXXXXXXXXX" value="appU5XZ7dtXAWmCfy">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Hunter.io API Key</label>
+    <input type="password" id="hunterKey" placeholder="Tu API key de Hunter" value="b1ce4c1fd84a163e72cd812fd87ba8fcf9ddef19">
+    <div class="api-note">Tus credenciales se usan solo localmente en tu navegador. No se envían a ningún servidor externo.</div>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Mes de producción</label>
+    <input type="text" id="month" placeholder="August 2026">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Idioma del email</label>
+    <select id="language">
+      <option value="EN">English</option>
+      <option value="ES">Español</option>
+      <option value="IT">Italiano</option>
+      <option value="FR">Français</option>
+    </select>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Filtrar por estado</label>
+    <select id="filterStatus">
+      <option value="Lead">Solo leads (sin email aún)</option>
+      <option value="all">Todos los registros</option>
+    </select>
+  </div>
+
+  <button class="launch-btn" id="launchBtn" onclick="launch()">Conectar y lanzar</button>
+</aside>
+
+<main>
+  <div class="status-line" id="statusLine">Ingresá tus credenciales y lanzá la búsqueda.</div>
+  <div class="progress-track" id="progressTrack"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+  <div id="resultsSection" class="results-section">
+    <div class="stats-strip">
+      <div class="stat-cell"><div class="stat-number" id="statTotal">0</div><div class="stat-name">Hoteles</div></div>
+      <div class="stat-cell"><div class="stat-number" id="statEmails">0</div><div class="stat-name">Emails encontrados</div></div>
+      <div class="stat-cell"><div class="stat-number" id="statSaved">0</div><div class="stat-name">Guardados en Airtable</div></div>
+      <div class="stat-cell"><div class="stat-number" id="statGenerated">0</div><div class="stat-name">Emails generados</div></div>
+    </div>
+
+    <div class="results-header">
+      <div class="section-label" style="margin:0;flex:1;">Resultados</div>
+      <button class="export-btn" onclick="exportCSV()">Exportar CSV</button>
+    </div>
+
+    <div class="hotels-list" id="hotelsList"></div>
+  </div>
+</main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Mag & Lucas — Visual Production Studio</div>
+    <div class="footer-note">bragalucas.com/mag-and-lucas</div>
+  </div>
+</footer>
+</div>
+
+<script>
+const AIRTABLE_TABLE = 'Hotels';
+
+const TEMPLATES = {
+  EN: (h, m) => `Subject: Visual content production | ${h.name}\n\nHi${h.contactName ? ' ' + h.contactName.split(' ')[0] : ''},\n\nMy name is Lucas Braga. I run Mag & Lucas — a boutique visual production studio specializing in photography and cinematic video for high-end hospitality.\n\nWe've worked with over 60 properties across Europe and the Americas — including Mandarin Oriental, Relais & Châteaux, and The Luxury Collection — producing content for social media, websites, and digital campaigns.\n\nWe'll be in ${h.city ? h.city.split(' ')[0] : 'your city'} during ${m} with availability for new productions. Attached you'll find an overview of our work and access to our portfolio.\n\nIf you'd like to receive a proposal, we're happy to put one together.\n\nLucas Braga\nMag & Lucas — Visual Production Studio\nwww.bragalucas.com/mag-and-lucas`,
+  ES: (h, m) => `Asunto: Producción de contenido visual | ${h.name}\n\nBuen día${h.contactName ? ' ' + h.contactName.split(' ')[0] : ''},\n\nMi nombre es Lucas Braga. Dirijo Mag & Lucas — un estudio boutique de producción visual especializado en fotografía y video cinematográfico para hotelería de alta gama.\n\nHemos trabajado con más de 60 propiedades en Europa y América — entre ellas Mandarin Oriental, Relais & Châteaux y The Luxury Collection — produciendo contenido para redes sociales, sitios web y campañas digitales.\n\nDurante ${m} estaremos en ${h.city ? h.city.split(' ')[0] : 'su ciudad'} con disponibilidad para nuevas producciones. Adjunto encontrarán un resumen de nuestro trabajo y el acceso a nuestro portfolio.\n\nSi les interesa recibir una propuesta, con gusto la preparamos.\n\nLucas Braga\nMag & Lucas — Visual Production Studio\nwww.bragalucas.com/mag-and-lucas`,
+  IT: (h, m) => `Oggetto: Produzione di contenuti visivi | ${h.name}\n\nBuongiorno${h.contactName ? ' ' + h.contactName.split(' ')[0] : ''},\n\nMi chiamo Lucas Braga. Dirigo Mag & Lucas — uno studio boutique di produzione visiva specializzato in fotografia e video cinematografico per l'ospitalità di alta gamma.\n\nAbbiamo lavorato con oltre 60 strutture in Europa e nelle Americhe — tra cui Mandarin Oriental, Relais & Châteaux e The Luxury Collection — producendo contenuti per social media, siti web e campagne digitali.\n\nDurante ${m} saremo a ${h.city ? h.city.split(' ')[0] : 'la vostra città'} con disponibilità per nuove produzioni. In allegato troverete una panoramica del nostro lavoro e l'accesso al nostro portfolio.\n\nSe siete interessati a ricevere una proposta, saremo felici di prepararla.\n\nLucas Braga\nMag & Lucas — Visual Production Studio\nwww.bragalucas.com/mag-and-lucas`,
+  FR: (h, m) => `Objet: Production de contenu visuel | ${h.name}\n\nBonjour${h.contactName ? ' ' + h.contactName.split(' ')[0] : ''},\n\nJe m'appelle Lucas Braga. Je dirige Mag & Lucas — un studio boutique de production visuelle spécialisé en photographie et vidéo cinématographique pour l'hôtellerie haut de gamme.\n\nNous avons travaillé avec plus de 60 établissements en Europe et dans les Amériques — dont Mandarin Oriental, Relais & Châteaux et The Luxury Collection — en produisant du contenu pour les réseaux sociaux, les sites web et les campagnes digitales.\n\nNous serons à ${h.city ? h.city.split(' ')[0] : 'votre ville'} en ${m} et nous sommes disponibles pour de nouvelles productions. Vous trouverez ci-joint un aperçu de notre travail et l'accès à notre portfolio.\n\nSi vous êtes intéressés par une proposition, nous serons ravis de la préparer.\n\nLucas Braga\nMag & Lucas — Visual Production Studio\nwww.bragalucas.com/mag-and-lucas`
+};
+
+let results = [], total = 0, emailsFound = 0, saved = 0, generated = 0;
+
+function setStatus(msg, type = '') {
+  const el = document.getElementById('statusLine');
+  el.textContent = msg;
+  el.className = 'status-line ' + type;
+}
+
+function setProgress(p) { document.getElementById('progressFill').style.width = p + '%'; }
+
+function updateStats() {
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statEmails').textContent = emailsFound;
+  document.getElementById('statSaved').textContent = saved;
+  document.getElementById('statGenerated').textContent = generated;
+}
+
+function setDot(id, status) {
+  const el = document.getElementById(id);
+  el.className = 'conn-dot ' + status;
+}
+
+// Airtable: fetch all records
+async function fetchAirtableRecords(token, baseId, filterStatus) {
+  let records = [], offset = null;
+  do {
+    let url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(AIRTABLE_TABLE)}?pageSize=100`;
+    if (filterStatus !== 'all') url += `&filterByFormula=${encodeURIComponent(`{Estado}="${filterStatus}"`)}`;
+    if (offset) url += `&offset=${offset}`;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!res.ok) throw new Error('Airtable error: ' + res.status);
+    const data = await res.json();
+    records = records.concat(data.records);
+    offset = data.offset || null;
+  } while (offset);
+  return records;
+}
+
+// Airtable: update a record with email and contact name
+async function updateAirtableRecord(token, baseId, recordId, fields) {
+  const res = await fetch(`https://api.airtable.com/v0/${baseId}/${encodeURIComponent(AIRTABLE_TABLE)}/${recordId}`, {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields })
+  });
+  return res.ok;
+}
+
+// Hunter: search email by domain
+async function hunterSearch(domain, key) {
+  try {
+    const res = await fetch(`https://api.hunter.io/v2/domain-search?domain=${encodeURIComponent(domain)}&api_key=${key}&limit=10`);
+    const data = await res.json();
+    if (!data.data || !data.data.emails || !data.data.emails.length) return null;
+    const emails = data.data.emails;
+    const pick = emails.find(e =>
+      e.department === 'marketing' || e.department === 'pr' ||
+      (e.position && /marketing|pr |communications|brand|sales/i.test(e.position))
+    ) || emails.find(e => e.type === 'generic') || emails[0];
+    return {
+      email: pick.value,
+      name: pick.first_name ? `${pick.first_name} ${pick.last_name || ''}`.trim() : null,
+      position: pick.position || null
+    };
+  } catch (e) { return null; }
+}
+
+function getCatClass(c) {
+  if (c === '5★') return 'five';
+  if (c === 'Boutique') return 'boutique';
+  if (c === 'Design') return 'design';
+  return '';
+}
+
+function addCard(hotel, i) {
+  const list = document.getElementById('hotelsList');
+  const div = document.createElement('div');
+  div.className = `hotel-item ${hotel.email ? 'has-email' : 'no-email'}`;
+  div.style.animationDelay = `${(i % 10) * 40}ms`;
+  div.innerHTML = `
+    <div class="hotel-top">
+      <div>
+        <div class="hotel-name">${hotel.name}</div>
+        <div class="hotel-city">${hotel.city || ''} · ${hotel.domain || '—'}</div>
+      </div>
+      <span class="cat-tag ${getCatClass(hotel.category)}">${hotel.category || '—'}</span>
+    </div>
+    <div class="hotel-email-row">
+      <div class="${hotel.email ? 'email-found' : 'email-missing'}">
+        ${hotel.email
+          ? `${hotel.email}${hotel.contactName ? ' · ' + hotel.contactName : ''}${hotel.contactPosition ? ' · ' + hotel.contactPosition : ''}${hotel.savedToAirtable ? '<span class="saved-tag">Guardado</span>' : ''}`
+          : 'Email no encontrado en Hunter'}
+      </div>
+      <div class="card-btns">
+        ${hotel.emailBody ? `<button class="btn-ghost" onclick="togglePreview(${i})">Ver email</button>` : ''}
+        ${hotel.emailBody ? `<button class="btn-ghost" onclick="copyText(${i})">Copiar</button>` : ''}
+        ${hotel.email && hotel.emailBody ? `<button class="btn-ghost gold" onclick="openMail(${i})">Abrir en mail</button>` : ''}
+      </div>
+    </div>
+    ${hotel.emailBody ? `<div class="email-body-preview" id="preview-${i}">${hotel.emailBody}</div>` : ''}
+  `;
+  list.appendChild(div);
+}
+
+function togglePreview(i) { document.getElementById(`preview-${i}`).classList.toggle('open'); }
+function copyText(i) { navigator.clipboard.writeText(results[i].emailBody); setStatus('Email copiado al portapapeles.', 'success'); }
+function openMail(i) {
+  const h = results[i];
+  const lines = h.emailBody.split('\n');
+  const subject = lines[0].replace(/^(Subject|Asunto|Oggetto|Objet): /, '');
+  const body = lines.slice(2).join('\n');
+  window.open(`mailto:${h.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+}
+
+function exportCSV() {
+  const rows = [['Hotel', 'Ciudad', 'Categoría', 'Dominio', 'Email', 'Contacto', 'Cargo', 'Guardado en Airtable']];
+  results.forEach(h => rows.push([h.name, h.city || '', h.category || '', h.domain || '', h.email || '', h.contactName || '', h.contactPosition || '', h.savedToAirtable ? 'Sí' : 'No']));
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  a.download = 'outreach_results.csv';
+  a.click();
+}
+
+async function launch() {
+  const token = document.getElementById('airtableToken').value.trim();
+  const baseId = document.getElementById('airtableBase').value.trim();
+  const hunterKey = document.getElementById('hunterKey').value.trim();
+  const month = document.getElementById('month').value.trim() || 'próximos meses';
+  const language = document.getElementById('language').value;
+  const filterStatus = document.getElementById('filterStatus').value;
+
+  if (!token || !baseId || !hunterKey) {
+    setStatus('Completá todas las credenciales antes de continuar.', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('launchBtn');
+  btn.disabled = true;
+  btn.textContent = 'Conectando...';
+  document.getElementById('hotelsList').innerHTML = '';
+  document.getElementById('resultsSection').style.display = 'block';
+  document.getElementById('progressTrack').style.display = 'block';
+  results = []; total = 0; emailsFound = 0; saved = 0; generated = 0;
+  updateStats();
+  setDot('dotAirtable', '');
+  setDot('dotHunter', '');
+
+  // Step 1: Fetch from Airtable
+  setStatus('Conectando con Airtable...', 'active');
+  let records;
+  try {
+    records = await fetchAirtableRecords(token, baseId, filterStatus);
+    setDot('dotAirtable', 'ok');
+    setStatus(`Airtable conectado. ${records.length} hoteles encontrados.`, 'active');
+  } catch (e) {
+    setDot('dotAirtable', 'err');
+    setStatus('Error conectando con Airtable. Verificá el token y el Base ID.', 'error');
+    btn.disabled = false; btn.textContent = 'Conectar y lanzar';
+    return;
+  }
+
+  if (!records.length) {
+    setStatus('No hay hoteles con estado "Lead" en Airtable. Cambiá el filtro.', 'error');
+    btn.disabled = false; btn.textContent = 'Conectar y lanzar';
+    return;
+  }
+
+  total = records.length;
+  updateStats();
+  setDot('dotHunter', 'ok');
+
+  // Step 2: Process each hotel
+  for (let i = 0; i < records.length; i++) {
+    const rec = records[i];
+    const f = rec.fields;
+    const hotel = {
+      recordId: rec.id,
+      name: f['Hotel'] || f['Name'] || '—',
+      city: f['Ciudad'] || '',
+      country: f['Pais'] || '',
+      category: f['Categoría'] || f['Categoria'] || '',
+      domain: f['Sitio web'] || f['Web'] || '',
+      existingEmail: f['Email de contacto'] || f['Email'] || ''
+    };
+
+    setProgress(Math.round(((i + 1) / records.length) * 100));
+    setStatus(`Procesando ${i + 1} de ${records.length} — ${hotel.name}`, 'active');
+
+    // Search Hunter only if no email yet and has a domain
+    if (!hotel.existingEmail && hotel.domain) {
+      const ed = await hunterSearch(hotel.domain, hunterKey);
+      if (ed) {
+        hotel.email = ed.email;
+        hotel.contactName = ed.name;
+        hotel.contactPosition = ed.position;
+        emailsFound++;
+
+        // Save back to Airtable
+        const updateFields = { 'Email de contacto': ed.email };
+        if (ed.name) updateFields['Nombre de contacto'] = ed.name;
+        if (ed.position) updateFields['Tipo de contacto'] = 'Marketing';
+        const ok = await updateAirtableRecord(token, baseId, rec.id, updateFields);
+        if (ok) { hotel.savedToAirtable = true; saved++; }
+      }
+    } else if (hotel.existingEmail) {
+      hotel.email = hotel.existingEmail;
+      hotel.contactName = f['Nombre de contacto'] || null;
+    }
+
+    // Generate email
+    const tpl = TEMPLATES[language];
+    if (tpl) {
+      hotel.emailBody = tpl(hotel, month);
+      hotel.language = language;
+      generated++;
+    }
+
+    results.push(hotel);
+    updateStats();
+    addCard(hotel, i);
+
+    await new Promise(r => setTimeout(r, 600));
+  }
+
+  setProgress(100);
+  setStatus(`Listo — ${emailsFound} emails nuevos encontrados, ${saved} guardados en Airtable, ${generated} mensajes generados.`, 'success');
+  btn.disabled = false;
+  btn.textContent = 'Lanzar de nuevo';
+}
+</script>
+</body>
+</html>
